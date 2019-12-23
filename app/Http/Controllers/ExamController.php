@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exam;
+use App\Subject;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -15,7 +16,8 @@ class ExamController extends Controller
     public function index()
     {
         $exams = Exam::orderBy('id', 'desc')->paginate(5);
-        return view('admin.exams.list', compact('exams'));
+        $subjects = Subject::orderBy('id', 'desc')->get();
+        return view('admin.exams.list', compact('exams', 'subjects'));
     }
 
     /**
@@ -57,7 +59,7 @@ class ExamController extends Controller
     public function update(Request $request, $id)
     {
         $exam = Exam::find($id);
-        $exam->subject_id = $exam->subject_id;
+        $exam->subject_id = $request->get('subjectId');
         $exam->time = $request->get('time');
         $exam->room = $request->get('room');
         $exam->quantity = $request->get('quantity');

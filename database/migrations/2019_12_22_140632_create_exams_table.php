@@ -15,7 +15,7 @@ class CreateExamsTable extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('subject_id')->unique();
+            $table->unsignedInteger('subject_id');
             $table->string('time');
             $table->string('room');
             $table->integer('quantity');
