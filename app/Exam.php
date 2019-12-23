@@ -10,4 +10,9 @@ class Exam extends Model
     {
         return $this->belongsTo('App\Subject', 'subject_id', 'id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'exam_register', 'exam_id', 'user_id')->withTimestamps();
+    }
 }

@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
-    public function exam()
+    public function exams()
     {
-        return $this->hasOne('App\Exam', 'subject_id');
+        return $this->hasMany('App\Exam', 'subject_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'student_subject', 'subject_id', 'user_id')->withTimestamps();
     }
 }

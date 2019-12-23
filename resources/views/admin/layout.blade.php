@@ -34,7 +34,7 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="javascript:void(0)">Sign out</a>
+            <a class="nav-link" href="/logout">Sign out</a>
         </li>
     </ul>
 </nav>
@@ -53,19 +53,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/subjects">
                             <span data-feather="book"></span>
-                            Subjects
+                            Môn Học
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/exams">
                             <span data-feather="book-open"></span>
-                            Exams
+                            Ca Thi
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/students">
                             <span data-feather="users"></span>
-                            Students
+                            Sinh Viên
                         </a>
                     </li>
                 </ul>
@@ -78,9 +78,9 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">
+                        <a class="nav-link" href="/admin/export">
                             <span data-feather="file-text"></span>
-                            Current month
+                            In Danh Sách Thi
                         </a>
                     </li>
                 </ul>

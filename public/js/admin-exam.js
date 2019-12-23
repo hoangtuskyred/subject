@@ -38,6 +38,14 @@ $(document).ready(function () {
             url: '/exams/' + id,
             method: 'GET'
         }).done(function (res) {
+            $("#inputEditSubjectId option").each(function(){
+                $(this).removeAttr('selected');
+                if ($(this).val() == res.subject_id)
+                    $(this).attr("selected","selected");
+            });
+
+            // var times = res.time.match(/(\d+)/g);
+
             modal.find('#inputEditTime').val(res.time);
             modal.find('#inputEditRoom').val(res.room);
             modal.find('#inputEditQuantity').val(res.quantity);
@@ -56,6 +64,7 @@ $(document).ready(function () {
         toastr.warning('Save change...');
         var id = $(this).attr('data-id');
         var data = {
+            subjectId: $('#inputEditSubjectId').val(),
             time: $('#inputEditTime').val(),
             room: $('#inputEditRoom').val(),
             quantity: $('#inputEditQuantity').val(),

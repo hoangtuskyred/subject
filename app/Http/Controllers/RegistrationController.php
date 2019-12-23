@@ -2,51 +2,59 @@
 
 namespace App\Http\Controllers;
 
-use App\Subject;
+use App\Exam;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegistrationController extends Controller
 {
     public function index()
     {
-        $subjects = Subject::all();
+        $userId = Auth::user()->id;
+        $subjects = User::find($userId)->subjects()->with('exams')->get();
         return view('student.resign', compact('subjects'));
+    }
+
+    public function subjectRegister()
+    {
+        $exams = User::find(Auth::user()->id)->exams()->with('subject')->get();
+        return response($exams);
     }
 
     public function searchResign(Request $request)
     {
-        $searchSubject = $request->get('searchSubject');
-        $subjects = Subject::where('name', 'like' ,'%' . $searchSubject . '%')->get();
+        $searchExam = $request->get('searchExam');
+        $subjects = User::find(3)->subjects()->where('name', 'like', '%'.$searchExam.'%')->with('exams')->get();
         return view('student.resign', compact('subjects'));
     }
 
     public function registration(Request $request)
     {
-        $userId = 1;
-        $subjectId = $request->get('subjectId');
+        $userId = Auth::user()->id;
+        $examId = $request->get('examId');
 
-        $u = User::find(1);
-        $u->subjects()->attach($subjectId);
+        $u = User::find($userId);
+        $u->exams()->attach($examId);
 
         return response('Ok', 200);
-    }
-
-    public function subjectRegister()
-    {
-        $user = User::find(1);
-        return $user->subjects;
     }
 
     public function registrationDelete(Request $request)
     {
-        $userId = 1;
-        $subjectId = $request->get('subjectId');
+        $userId = Auth::user()->id;
+        $examId = $request->get('examId');
 
-        $u = User::find(1);
-        $u->subjects()->detach($subjectId);
+        $u = User::find($userId);
+        $u->exams()->detach($examId);
 
         return response('Ok', 200);
+    }
+
+    public function checkQuantity($examId)
+    {
+        $quantity = Exam::find($examId)->users()->count();
+        return $quantity;
     }
 
 }

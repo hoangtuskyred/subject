@@ -17,7 +17,7 @@ class CreateStudentSubjectTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('subject_id')->unsigned();
-            $table->boolean('is_baned');
+            $table->boolean('is_baned')->default(0);
             $table->timestamps();
 
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');

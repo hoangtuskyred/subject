@@ -7,7 +7,7 @@
 
     {{--    Add exam modal--}}
     <div class="modal fade" id="addExamModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Add exam</h5>
@@ -16,19 +16,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <label for="inputSubjectId">Name</label>
-                        <input type="text" class="form-control" id="inputSubjectId" placeholder="Nhập mã môn học">
 
-                        <label for="inputTime">Thời gian</label>
-                        <input type="text" class="form-control" id="inputTime" placeholder="Nhập thời gian">
+                    <div class="container-fluid">
+                        <form class="row">
+                            <div class="col-6">
+                                <label for="inputSubjectId">Chọn môn học</label>
+                                <select class="form-control" id="inputSubjectId">
+                                    @foreach($subjects as $subject)
+                                        <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                        <label for="inputRoom">Phòng thi</label>
-                        <input type="text" class="form-control" id="inputRoom" placeholder="Nhập số phòng">
+                            <div class="col-6 row">
+                                <label for="inputTime">Thời gian</label>
+                                <input type="text" class="form-control" id="inputTime" placeholder="Thời gian">
+                            </div>
 
-                        <label for="inputQuantity">Số lượng</label>
-                        <input type="text" class="form-control" id="inputQuantity" placeholder="Nhập số lượng">
-                    </form>
+                            <div class="col-6">
+                                <label for="inputRoom">Phòng thi</label>
+                                <input type="text" class="form-control" id="inputRoom" placeholder="Nhập số phòng">
+                            </div>
+
+                            <div class="col-6">
+                                <label for="inputQuantity">Số lượng</label>
+                                <input type="number" class="form-control" id="inputQuantity" placeholder="Nhập số lượng">
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -40,7 +56,7 @@
 
     {{--    Edit exam modal--}}
     <div class="modal fade" id="editExamModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit exam</h5>
@@ -49,16 +65,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <label for="inputEditTime">Thời gian</label>
-                        <input type="text" class="form-control" id="inputEditTime" placeholder="Nhập thời gian">
 
-                        <label for="inputEditRoom">Phòng thi</label>
-                        <input type="text" class="form-control" id="inputEditRoom" placeholder="Nhập số phòng">
+                    <div class="container-fluid">
+                        <form class="row">
+                            <div class="col-6">
+                                <label for="inputEditSubjectId">Chọn môn học</label>
+                                <select class="form-control" id="inputEditSubjectId">
+                                    @foreach($subjects as $subject)
+                                        <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                        <label for="inputEditQuantity">Số lượng</label>
-                        <input type="text" class="form-control" id="inputEditQuantity" placeholder="Nhập số lượng">
-                    </form>
+                            <div class="col-6 row">
+                                <label for="inputEditTime">Thời gian</label>
+                                <input type="text" class="form-control" id="inputEditTime" placeholder="Thời gian">
+                            </div>
+
+                            <div class="col-6">
+                                <label for="inputEditRoom">Phòng thi</label>
+                                <input type="text" class="form-control" id="inputEditRoom" placeholder="Nhập số phòng">
+                            </div>
+
+                            <div class="col-6">
+                                <label for="inputEditQuantity">Số lượng</label>
+                                <input type="number" class="form-control" id="inputEditQuantity" placeholder="Nhập số lượng">
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
